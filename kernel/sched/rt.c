@@ -1636,7 +1636,7 @@ static int find_lowest_rq(struct task_struct *task);
  * task is likely to block preemptions soon because it is a
  * ksoftirq thread that is handling softirqs.
  */
-static bool cpu_busy_with_softirqs(int cpu)
+bool cpu_busy_with_softirqs(int cpu)
 {
 	u32 softirqs = per_cpu(active_softirqs, cpu) |
 		       __cpu_softirq_pending(cpu);
@@ -1644,7 +1644,7 @@ static bool cpu_busy_with_softirqs(int cpu)
 	return softirqs & LONG_SOFTIRQ_MASK;
 }
 #else
-static bool cpu_busy_with_softirqs(int cpu)
+bool cpu_busy_with_softirqs(int cpu)
 {
 	return false;
 }
